@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
       //  task.execute("http://samples.openweathermap.org/data/2.5/weather?q=" + cityName.getText().toString());
 
-        task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText().toString());
+       // task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText().toString());
+
+        task.execute(String.format("http://api.openweathermap.org/data/2.5/weather?q=%s&appid=0fae5d5127767a0cfb0f4686cfbae004", cityName.getText().toString()));
 
     }
 
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
