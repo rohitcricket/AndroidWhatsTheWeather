@@ -28,13 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
         DownloadTask task = new DownloadTask();
 
-       // task.execute("http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b1b15e88fa797225412429c1c50c122a1");
+      //  task.execute("http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b1b15e88fa797225412429c1c50c122a1");
 
-       // task.execute("http://samples.openweathermap.org/data/2.5/weather?q=" + cityName.getText().toString());
+      //  task.execute("http://samples.openweathermap.org/data/2.5/weather?q=" + cityName.getText().toString());
 
         task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText().toString());
-
-
 
     }
 
@@ -44,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         cityName = (EditText) findViewById(R.id.cityName);
-
-        //DownloadTask task = new DownloadTask();
-
-       // task.execute("http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b1b15e88fa797225412429c1c50c122a1");
 
 
     }
