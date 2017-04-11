@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:textSize="32sp"
         android:textColor="#FFFFFF"
         android:gravity="center"
         android:layout_marginTop="20dp"
@@ -32,6 +32,8 @@
         android:layout_marginLeft="33dp"
         android:layout_marginRight="33dp"
         android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
         android:ems="10"
         android:inputType="textPersonName"
         android:layout_below="@+id/textView2"
@@ -49,15 +51,15 @@
         android:text="What's the Weather?"/>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/resultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="TextView"/>
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:textColor="#FFA500"
+        android:textSize="36sp"/>
 
 
 </RelativeLayout>

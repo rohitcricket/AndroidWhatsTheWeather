@@ -1,11 +1,14 @@
 package com.example.android.whatstheweather;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,18 +24,16 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     EditText cityName;
+    TextView resultTextView;
 
     public void findWeather (View view) {
 
         Log.i("city name ", cityName.getText().toString());
 
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(cityName.getWindowToken(), 0);
+
         DownloadTask task = new DownloadTask();
-
-      //  task.execute("http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b1b15e88fa797225412429c1c50c122a1");
-
-      //  task.execute("http://samples.openweathermap.org/data/2.5/weather?q=" + cityName.getText().toString());
-
-       // task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText().toString());
 
         task.execute(String.format("http://api.openweathermap.org/data/2.5/weather?q=%s&appid=0fae5d5127767a0cfb0f4686cfbae004", cityName.getText().toString()));
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         cityName = (EditText) findViewById(R.id.cityName);
+        resultTextView = (TextView) findViewById(R.id.resultTextView);
 
 
     }
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
             try {
 
+                String message = "";
+
                 JSONObject jsonObject = new JSONObject(result);
 
                 String weatherInfo = jsonObject.getString("weather");
@@ -102,9 +106,25 @@ public class MainActivity extends AppCompatActivity {
 
                     JSONObject jsonPart = arr.getJSONObject(i);
 
+                    String main = "";
+                    String description = "";
+
+                    main = jsonPart.getString("main");
+                    description = jsonPart.getString("description");
+
+                    if (main != "" && description != "") {
+
+                        message += main + ": " + description + "\r\n";
+
+                    }
+
                     Log.i("main", jsonPart.getString("main"));
                     Log.i("description", jsonPart.getString("description"));
 
+                }
+
+                if (message != "") {
+                    resultTextView.setText(message);
                 }
 
 
